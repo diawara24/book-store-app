@@ -1,8 +1,16 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import BookList from "../components/BookList";
 import BooksCategory from "../components/BooksCategory";
 import { plus_icon } from "../constants/icons";
-import { COLORS } from "../constants/theme";
+import { COLORS, FONTS } from "../constants/theme";
+import { user } from "../data/user";
 
 export default function HomeScreen() {
   return (
@@ -10,21 +18,25 @@ export default function HomeScreen() {
       <View style={styles.headerSection}>
         <View style={styles.headerSectionBody}>
           <View>
-            <Text>Good morning</Text>
-            <Text>Username</Text>
+            <Text style={styles.textWhite}>Good morning</Text>
+            <Text style={[styles.textWhite, FONTS.h2]}>{user.name}</Text>
           </View>
-          <View>
-            <Pressable>
-              <Image source={plus_icon} />
-              <Text>600</Text>
-            </Pressable>
-          </View>
+          <Pressable>
+            <View style={styles.pointsContainer}>
+              <Image source={plus_icon} style={styles.image} />
+              <Text style={[styles.textWhite, FONTS.h3]}>
+                {user.point} points
+              </Text>
+            </View>
+          </Pressable>
         </View>
       </View>
-      <View style={styles.body}>
-        <BookList />
-        <BooksCategory />
-      </View>
+      <ScrollView>
+        <View style={styles.body}>
+          <BookList />
+          <BooksCategory />
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -36,14 +48,33 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.black,
   },
   headerSection: {
-    height: 200,
+    height: 100,
   },
   headerSectionBody: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20,
+    color: COLORS.white,
+    padding: 10,
+  },
+  textWhite: {
+    color: COLORS.white,
+  },
+  pointsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.primary,
+    borderRadius: 50,
+    width: 120,
+    padding: 5,
+  },
+  image: {
+    width: 24,
+    height: 24,
+    marginRight: 8,
+    borderRadius: 50,
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   body: {
     flex: 1,

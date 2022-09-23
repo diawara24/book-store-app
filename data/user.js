@@ -1,4 +1,4 @@
 export const user = {
-  name: 'Username',
+  name: 'Promo 7',
   point: 600,
 };
