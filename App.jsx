@@ -1,5 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, LogBox, Text, View } from 'react-native';
+
+// Hide Error FlatList using inside ScrollView
+LogBox.ignoreLogs(['VirtualizedLists']);
+
 
 export default function App() {
   return (
